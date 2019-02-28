@@ -150,33 +150,32 @@ CompanyList = list(set(triple))
 
 
 
-############  Make a workbook of it #########
+############  Make a .txt of it #########
 
 # Save the date so you can know the last time it was updated
-date = datetime.date.today()
+date = str(datetime.date.today())
 
-workbook = xlsxwriter.Workbook('NASA_Small_Business_Registry')
+# Create a workbook and add a worksheet.
+workbook = xlsxwriter.Workbook('NASA_Small_Business.xlsx')
 worksheet = workbook.add_worksheet()
 
-# Write the last time this was updated
-worksheet.write(0, 0, 'This sheet is up to date as of:')
+worksheet.write(0, 0, 'This sheet is up to date as of: ')
 worksheet.write(0, 1, date)
 
-# Create table heading
-worksheet.write(2, 0, 'Company')
-worksheet.write(2, 1, 'Project')
-worksheet.write(2, 2, 'City')
 
+# Start from the first cell. Rows and columns are zero indexed.
 row = 3
-column = 0
+col = 0
 
-# Now populate the table
-for co, pj, ci in CompanyList:
-    worksheet.write(row, column, co)
-    worksheet.write(row, column + 1, pj)
-    worksheet.write(row, column + 2, ci)
-    
+# Iterate over the data and write it out row by row.
+for co, pj, ci in (CompanyList):
+    worksheet.write(row, col,     co)
+    worksheet.write(row, col + 1, pj)
+    worksheet.write(row, col + 2, ci)
     row += 1
+
+
+
 
 workbook.close()
 
