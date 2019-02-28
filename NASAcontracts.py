@@ -155,7 +155,7 @@ CompanyList = list(set(triple))
 # Save the date so you can know the last time it was updated
 date = datetime.date.today()
 
-workbook = xlsxwriter.workbook('NASA_Small_Business_Registry')
+workbook = xlsxwriter.Workbook('NASA_Small_Business_Registry')
 worksheet = workbook.add_worksheet()
 
 # Write the last time this was updated
